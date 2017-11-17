@@ -28,7 +28,6 @@ api.listaSemana = function(req, res) {
 };
 
 api.listaAnterior = function(req, res) {
-   
    var negociacoesAnteriores = negociacoes.filter(function(negociacao) {
         return negociacao.data < dataAtual && negociacao.data > dateRetrasada;
     });
