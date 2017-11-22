@@ -6,7 +6,6 @@ let plugins = [];
 
 plugins.push(new extractTextPlugin('styles.css'));
 
-// babiliPlugin = plugin para minificação de arquivo css | js
 if (process.env.NODE_ENV == 'production') {
     plugins.push(new babiliPlugin());
 }
@@ -27,16 +26,13 @@ module.exports = {
                     loader: 'babel-loader'
                 }
             },
-            { test: /\.css$/, loader: 'style-loader!css-loader' },
-            // {
-            //     test: /\.css$/,
-            //     use: extractTextPlugin.extract({
-            //         fallback: 'style-loader',
-            //         use: {
-            //             loader: 'css-loader'
-            //         }
-            //     })
-            // },
+            {
+                test: /\.css$/,
+                use: extractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: 'css-loader'
+                })
+            },
             { 
                 test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, 
                 loader: 'url-loader?limit=10000&mimetype=application/font-woff' 
